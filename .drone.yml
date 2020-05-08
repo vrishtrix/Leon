@@ -1,0 +1,10 @@
+kind: pipeline
+type: docker
+name: Athena
+
+steps:
+  - name: Test
+    image: crystallang/crystal
+    commands:
+      - shards install
+      - crystal spec
