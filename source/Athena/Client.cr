@@ -45,26 +45,6 @@ class Athena::Client
 		JSON.parse(response.body)
 	end
 	  
-	# def post(url : String, body : String)
-	# 	response = Halite.post(url, headers: headers, json: body.to_json)
-	# 	JSON.parse(response.body)
-	# end
-	  
-	def post(url : String)
-		response = @http.post(@endpoint + url, headers: headers)
-		JSON.parse(response.body)
-	end
-	  
-	def patch(url : String, body : Hash | Array)
-		response = @http.patch(@endpoint + url, headers: headers, body: body.to_json)
-		JSON.parse(response.body)
-	end
-	  
-	def patch(url : String, body : String)
-		response = @http.patch(@endpoint + url, headers: headers, body: body)
-		JSON.parse(response.body)
-	end
-	  
 	def delete(url : String)
 		response = Halite.delete(@endpoint + url, headers: headers)
 		response.body == "" ? {"code" => response.status_code} : JSON.parse(response.body)
@@ -77,16 +57,6 @@ class Athena::Client
 	  
 	def put(url : String, body : Hash(String, String))
 		response = Halite.put(@endpoint + url, headers: headers, json: body)
-		JSON.parse(response.body)
-	end
-	  
-	def put(url : String, body : String)
-		response = @http.put(@endpoint + url, headers: headers, body: body)
-		JSON.parse(response.body)
-	end
-	  
-	def head(url : String)
-		response = @http.head(@endpoint + url, headers: headers)
 		JSON.parse(response.body)
 	end
 	  
