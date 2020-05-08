@@ -1,0 +1,13 @@
+name: athena
+version: 0.1.0
+
+authors:
+  - itzezc <chirub@foretag.co>
+
+targets:
+  athena:
+    main: src/athena.cr
+
+crystal: 0.34.0
+
+license: MIT
