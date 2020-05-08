@@ -6,7 +6,11 @@ authors:
 
 targets:
   athena:
-    main: src/athena.cr
+    main: source/athena.cr
+
+dependencies:
+  halite:
+    github: icyleaf/halite
 
 crystal: 0.34.0
 
