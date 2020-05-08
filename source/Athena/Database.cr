@@ -10,7 +10,7 @@ class Athena::Database
 	end
 
 	protected def create
-		@client.post("/_api/database", {"name" => @database})
+		result = @client.post("/_api/database", { "name" => @database })
 	end
 
 	def all

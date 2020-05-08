@@ -1,7 +1,7 @@
 require "./client"
 
-class Arango::Edge
-	@client : Arango::Client
+class Athena::Edge
+	@client : Athena::Client
 
 	getter client
 
