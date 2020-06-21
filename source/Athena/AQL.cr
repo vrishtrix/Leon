@@ -1,4 +1,4 @@
-require "./client"
+require "./Client"
 
 class Athena::AQL
 	@client : Athena::Client

@@ -11,6 +11,9 @@ targets:
 dependencies:
   halite:
     github: icyleaf/halite
+  active-model:
+    github: spider-gazelle/active-model
+    branch: master
 
 crystal: 0.34.0
 

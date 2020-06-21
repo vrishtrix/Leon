@@ -17,8 +17,8 @@ dependencies:
 ## Usage
 
 ```
-	require "athena"
+require "athena"
 
-	client = Athena::Client.new("http://localhost:8529", "root", "")
-	database = client.database("database")
+client = Athena::Client.new("http://localhost:8529", "root", "")
+database = client.database("database")
 ```
