@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-client = Athena::Client.new("http://localhost:8529", "root", "")
+client = Athena::Client.new("http://localhost:8529", "root", "root01")
 database = client.database("test_arangocr")
 
 describe Athena do

@@ -1,6 +1,6 @@
 require "json"
 require "./settings"
-require "./database_types"
+require "./DatabaseTypes"
 
 module Athena::ORMAttributes
 	TYPES = [Nil, String, Bool, Int32, Int64, Float32, Float64, Time, Bytes, JSON::Any, Array(String), Hash(String, String)]

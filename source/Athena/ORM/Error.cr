@@ -1,4 +1,4 @@
-class Athena::Error < Exception
+class Athena::ORMError < Exception
 	property field : Symbol
 	property raw_message : String
     

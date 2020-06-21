@@ -1,9 +1,9 @@
-require "./document"
+require "./Document"
 
 module Athena::ORMPersistence
-  macro __process_persistence
-    {% primary_name = PRIMARY[:name] %}
-    {% primary_type = PRIMARY[:type] %}
+	macro __process_persistence
+		{% primary_name = PRIMARY[:name] %}
+		{% primary_type = PRIMARY[:type] %}
 
     # The save method will check to see if the primary exists yet. If it does it
     # will call the update method, otherwise it will call the create method.

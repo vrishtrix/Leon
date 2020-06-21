@@ -1,7 +1,7 @@
 require "active-model"
 
 module Athena
-	class Base < ActiveModel::Model
+	class Model < ActiveModel::Model
 		def initialize(@args = {} of String => (Array(String) | JSON::Any | String))
 		end
 

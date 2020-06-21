@@ -6,10 +6,10 @@ require "./Attributes"
 require "./Persistence"
 
 class Athena::ORMDocument
-	include Attributes
-	include Settings
-	include Collection
-	include Persistence
+	include ORMAttributes
+	include ORMSettings
+	include ORMCollection
+	include ORMPersistence
 
 	@errors = [] of Athena::ORMError
 

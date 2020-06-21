@@ -1,6 +1,18 @@
-version: 1.0
+version: 2.0
 shards:
+  active-model:
+    git: https://github.com/spider-gazelle/active-model.git
+    version: 1.8.4+git.commit.e9737a4925eedf0ff4447fb1cc17f253d809076e
+
   halite:
-    github: icyleaf/halite
+    git: https://github.com/icyleaf/halite.git
     version: 0.10.5
+
+  json_mapping:
+    git: https://github.com/crystal-lang/json_mapping.cr.git
+    version: 0.1.0
+
+  yaml_mapping:
+    git: https://github.com/crystal-lang/yaml_mapping.cr.git
+    version: 0.1.0
 

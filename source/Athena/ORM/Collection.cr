@@ -1,5 +1,5 @@
 require "uuid"
-require "./adapter"
+require "./Adapter"
 
 module Athena::ORMCollection
   macro included
@@ -8,7 +8,7 @@ module Athena::ORMCollection
     end
   end
 
-  @@adapter = Athena::Adapter.new
+  @@adapter = Athena::ORMAdapter.new
 
   def self.adapter
     @@adapter
