@@ -1,8 +1,8 @@
 require "yaml"
 
-class Athena::ORMAdapter
-	property database : Athena::Database
-	property client : Athena::Client
+class Leon::ORMAdapter
+	property database : Leon::Database
+	property client : Leon::Client
 	property database_url : String = "http://127.0.0.1:8529"
 	property database_name : String = "arango_database"
 	DATABASE_YML = "config/database.yml"
@@ -17,10 +17,8 @@ class Athena::ORMAdapter
 			#@database_url = yaml["database_url"].to_s if yaml["database_url"]?
 			#@database_name = yaml["database_name"].to_s if yaml["database_name"]?
 		#end
-		@client = Athena::Client.new database_url, "root", ""
+		@client = Leon::Client.new database_url, "root", "root01"
 		#@database_name = ENV["DATABASE_NAME"] if ENV["DATABASE_NAME"]?
 		@database = @client.database("athena")
-
-		puts @database.current
 	end
 end

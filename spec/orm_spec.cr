@@ -6,9 +6,14 @@ class Ninja < Athena::Model
 	attribute age : Int32
 	attribute weapons : Array(String) = [] of String
 	attribute enemies : JSON::Any
-    end
+end
     
-    describe Athena do
+describe Athena do
+	it "should save" do
+		ninja = Ninja.new name: "Hiro"
+		ninja.save
+	end
+
 	it "should be generally okay" do
 	  Ninja.new.should_not be_nil
 	end

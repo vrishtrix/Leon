@@ -2,7 +2,7 @@ require "halite"
 require "json"
 require "http/client"
 
-class Athena::Client
+class Leon::Client
 	setter :async
 
 	def initialize(

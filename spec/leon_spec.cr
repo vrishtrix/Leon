@@ -1,16 +1,16 @@
 require "./spec_helper"
 
-client = Athena::Client.new("http://localhost:8529", "root", "root01")
+client = Leon::Client.new("http://localhost:8529", "root", "root01")
 database = client.database("test_arangocr")
 
-describe Athena do
+describe Leon do
 	it "Should return the right db name" do
 		database.current["result"]["name"].should eq("test_arangocr")
 	end
 
 	it "Should create the collection" do
 		demo = database.collection("demo")
-		demo.should be_a(Athena::Collection)
+		demo.should be_a(Leon::Collection)
 	end
 
 	it "Should Insert a value" do

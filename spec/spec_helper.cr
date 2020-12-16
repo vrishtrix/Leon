@@ -1,2 +1,2 @@
 require "spec"
-require "../source/Athena"
+require "../source/Leon"

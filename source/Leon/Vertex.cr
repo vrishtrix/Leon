@@ -1,7 +1,7 @@
 require "./client"
 
-class Athena::Vertex
-	@client : Athena::Client
+class Leon::Vertex
+	@client : Leon::Client
 
 	getter client
 

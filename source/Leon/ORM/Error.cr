@@ -1,4 +1,4 @@
-class Athena::ORMError < Exception
+class Leon::ORMError < Exception
 	property field : Symbol
 	property raw_message : String
     
