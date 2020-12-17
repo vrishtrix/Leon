@@ -1,23 +1,23 @@
-name: athena
+name: leon
 version: 0.1.0
 
 authors:
-  - itzezc <chirub@foretag.co>
+      - itzezc <chirub@foretag.co>
 
 targets:
-  athena:
-    main: source/athena.cr
+      leon:
+            main: source/leon.cr
 
 dependencies:
-  halite:
-    github: icyleaf/halite
-  active-model:
-    github: spider-gazelle/active-model
-    branch: master
-  graphql:
-    github: graphql-crystal/graphql
-  kemal:
-    github: kemalcr/kemal
+      halite:
+            github: icyleaf/halite
+      active-model:
+            github: spider-gazelle/active-model
+            branch: master
+      graphql:
+            github: graphql-crystal/graphql
+      kemal:
+            github: kemalcr/kemal
 
 crystal: 0.34.0
 
