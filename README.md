@@ -10,15 +10,15 @@ Athena is an open source ArangoDB Client and ORM for the Crystal Language
 
 ```
 dependencies:
-	athena:
-		github: ForetagInc/Athena
+	leon:
+		github: ForetagInc/Leon
 ```
 
 ## Usage
 
 ```
-require "athena"
+require "leon"
 
-client = Athena::Client.new("http://localhost:8529", "root", "")
+client = Leon::Client.new("http://localhost:8529", "root", "")
 database = client.database("database")
 ```

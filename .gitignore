@@ -6,3 +6,5 @@
 
 /source/GraphQL
 /tmp
+
+shard.lock
