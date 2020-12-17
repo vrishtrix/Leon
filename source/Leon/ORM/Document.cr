@@ -38,7 +38,7 @@ class Leon::ORMDocument
 	end
 	  
 	    
-	def initialize(args : Hash(Symbol | String, Athena::ORMDatabaseTypes::Any | Nil ))
+	def initialize(args : Hash(Symbol | String, Leon::ORMDatabaseTypes::Any | Nil ))
 		set_attributes(args)
 	end
 

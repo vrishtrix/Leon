@@ -15,8 +15,12 @@ describe Leon do
 
 	it "Should Insert a value" do
 		demo = database.collection("demo")
-		obj = demo.document.create({"hello" => "world"})
-		obj["_id"].should be_a(JSON::Any)
+		obj = demo.document.create({ "hello" => "world" })
+		
+		id = obj["_key"].as_s
+		obj2 = demo.document.get(id)
+
+		obj2["hello"].as_s.should eq "world"
 	end
 
 	it "Should read all documents" do
@@ -37,7 +41,7 @@ describe Leon do
 		aql = database.aql
 		cursor = aql.cursor({
 			"query"    => "FOR d IN demo FILTER d.hello == @val RETURN d",
-			"bindVars" => {val: "world"},
+			"bindVars" => { val: "world" },
 			"count"    => true,
 		})
 		cursor["count"].should eq 1

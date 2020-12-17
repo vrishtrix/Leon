@@ -14,7 +14,7 @@ class Leon::Collection
 	end
 
 	protected def create
-		@client.post("/_db/#{@database}/_api/collection", {"name" => @name})
+		@client.post("/_db/#{@database}/_api/collection", { "name" => @name })
 	end
 
 	def delete

@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-class Ninja < Athena::Model
+class Ninja < Leon::Model
 	attribute name : String
 	attribute epithet : String
 	attribute age : Int32
@@ -8,7 +8,7 @@ class Ninja < Athena::Model
 	attribute enemies : JSON::Any
 end
     
-describe Athena do
+describe Leon do
 	it "should save" do
 		ninja = Ninja.new name: "Hiro"
 		ninja.save
