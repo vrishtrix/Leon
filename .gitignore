@@ -4,7 +4,8 @@
 /.shards/
 *.dwarf
 
-/source/GraphQL
 /tmp
 
 shard.lock
+
+_ORM

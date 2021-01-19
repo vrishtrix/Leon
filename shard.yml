@@ -2,7 +2,7 @@ name: leon
 version: 0.1.0
 
 authors:
-      - itzezc <chirub@foretag.co>
+      - Chiru Boggavarapu <chirub@foretag.co>
 
 targets:
       leon:
@@ -11,14 +11,17 @@ targets:
 dependencies:
       halite:
             github: icyleaf/halite
+
       active-model:
             github: spider-gazelle/active-model
             branch: master
+
       graphql:
             github: graphql-crystal/graphql
+
       kemal:
             github: kemalcr/kemal
 
-crystal: 0.34.0
+crystal: 0.35.1
 
 license: MIT

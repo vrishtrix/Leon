@@ -1,28 +1,82 @@
 require "active-model"
-require "./Document"
+
+require "./Error"
+require "./Settings"
+require "./Collection"
+require "./Persistence"
 
 module Leon
-	class Model < ActiveModel::Model
-		def initialize(@args = {} of String => (Array(String) | JSON::Any | String))
-		end
+	module ORM
+		class Model < ActiveModel::Model
 
-		def save
-			puts self.attributes
-			data = ORMDocument.new(self.attributes) { inherited }
-			# puts data
-			self
-		end
+			include Leon::ORM::Settings
+			include Leon::ORM::Collection
+			include Leon::ORM::Persistence
+			include ActiveModel::Callbacks
 
-		def self.create(args = {} of String => (Array(String) | JSON::Any | String))
-			self.new(**args)
-		end
+			macro inherited
+				__process_collection
+				__process_persistence
 
-		def self.find(args)
-			
-		end
+				@@db_collection = ""
+				@@db_timestamps = false
 
-		def inspect
-			"#<#{self.class}:0x#{self.object_id.to_s(16)}\t #{attributes.map{|k,v| "\n  @#{k}: #{v.inspect}" }.join(", ")}>"
+				def self.collection(collection : String)
+					@@db_collection = collection
+				end
+
+				def self.db_collection
+					@@db_collection
+				end
+
+				def self.timestamps(timestamps : Bool)
+					@@db_timestamps = false
+				end
+
+				def self.db_timestamps
+					@@db_timestamps
+				end
+
+				def class_name
+					"{{@type.name.id}}".downcase
+				end
+			end
+
+			def initialize(@args = {} of String => (Array(String) | JSON::Any | String))
+			end
+
+			def self.create(args = {} of String => (Array(String) | JSON::Any | String))
+				self.new(**args)
+			end
+
+			def self.generate
+			end
+
+			def self.all
+			end
+
+			def self.find(id : String)
+				puts "Leon::Model::Find for Model #{id}"
+			end
+
+			def self.where
+				puts "where"
+			end
+
+			def self.destroy
+			end
+
+			def fresh
+			end
+
+			def refresh
+			end
+
+			def replicate
+			end
+
+			def is
+			end
 		end
-  	end
+	end
 end

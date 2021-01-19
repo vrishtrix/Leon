@@ -1,5 +1,5 @@
-# Athena
-Athena is an open source ArangoDB Client and ORM for the Crystal Language
+# Leon
+Leon is an open source ArangoDB Client driver and ORM for the Crystal Language.
 
 ## Requirements
 
@@ -16,9 +16,12 @@ dependencies:
 
 ## Usage
 
-```
+```ruby
 require "leon"
 
 client = Leon::Client.new("http://localhost:8529", "root", "")
 database = client.database("database")
+
+# Async (https://www.arangodb.com/docs/stable/http/async-results-management.html)
+client.async = true
 ```

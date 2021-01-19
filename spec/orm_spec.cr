@@ -1,45 +1,37 @@
 require "./spec_helper"
 
-class Ninja < Leon::Model
+# client = Leon::Client.new("http://localhost:8529", "root", "root01")
+# database = client.database("test_arangocr")
+
+# collection = database.collection("demo")
+
+class User < Leon::ORM::Model
+	collection "users"
+	timestamps true
+
 	attribute name : String
-	attribute epithet : String
 	attribute age : Int32
 	attribute weapons : Array(String) = [] of String
-	attribute enemies : JSON::Any
 end
-    
-describe Leon do
-	it "should save" do
-		ninja = Ninja.new name: "Hiro"
-		ninja.save
-	end
 
-	it "should be generally okay" do
-	  Ninja.new.should_not be_nil
-	end
-    
-	it "should support a string attribute" do
-	  ninja = Ninja.new name: "Hiro"
-	  ninja.name.should eq("Hiro")
-	end
-    
-	it "should support an integer attribute" do
-	  ninja = Ninja.new age: 25
-	  ninja.age.should eq(25)
-	end
-    
-	it "should support an array attribute" do
-	  nothing = [] of String
-	  ninja = Ninja.new
-	  ninja.weapons = %w[ katana shuriken ]
-	  # Have to do this or it gives me a Nil error!
-	  (ninja.weapons || nothing).first.should eq("katana")
-	  (ninja.weapons || nothing).last.should eq("shuriken")
-	end
-    
-	it "should support a json attribute" do
-	  ninja = Ninja.new
-	  ninja.enemies = JSON::Any.new([{"name" => "Hiro"}, {"name" => "Shane"}].to_json)
-	  ninja.enemies.should eq("[{\"name\":\"Hiro\"},{\"name\":\"Shane\"}]")
-	end
+User.generate
+
+user = User.new name: "Test"
+user.save
+
+class Token < Leon::ORM::Model
+	collection "tokens"
+	timestamps false
+
+	attribute name : String
 end
+
+Token.generate
+
+token = Token.new name: "Test"
+token.save
+
+user.name = "Ted"
+user.save
+
+# User.find "2591281"
