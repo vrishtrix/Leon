@@ -22,7 +22,7 @@ module Leon
 								attributes.delete(:_key)
 
 								obj = self.collection.document.create(
-									Hash(String, String | Array(String) | Int32 | Nil).from_json(attributes.to_json)
+									Hash(String, String | Array(String) | Int32 | Nil | Bool | Int64 | Float32 | Float64).from_json(attributes.to_json)
 								)
 
 								self._key = obj["_key"].to_s
