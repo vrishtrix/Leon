@@ -1,37 +1,53 @@
 require "./spec_helper"
 
-# client = Leon::Client.new("http://localhost:8529", "root", "root01")
-# database = client.database("test_arangocr")
+Leon.configuration do | config |
+	config.password = "root01"
+	config.database = "test_arangocr"
+end
 
-# collection = database.collection("demo")
+arango = Leon::Connection.new
 
 class User < Leon::ORM::Model
-	collection "users"
-	timestamps true
+	collection "accounts"
+	timestamps
+	soft_deletes
 
 	attribute name : String
 	attribute age : Int32
 	attribute weapons : Array(String) = [] of String
 end
 
-User.generate
 
-user = User.new name: "Test"
+user = User.new name: "Joe Lester", age: 25, weapons: ["knife", "gun"]
 user.save
 
-class Token < Leon::ORM::Model
-	collection "tokens"
-	timestamps false
+# user2 = User.new name: "Moe Lester", age: 30, weapons: ["chainsaw"]
+# user2.save
 
+# user2.delete
+
+# class User < Leon::ORM::Model
+# 	# collection "users"
+# 	# timestamps true
+
+# 	attribute name : String
+# 	attribute age : Int32
+# 	attribute weapons : Array(String) = [] of String
+# end
+
+# user = User.new name: "Test", age: 25
+# user.save
+
+class Token < Leon::ORM::Model
 	attribute name : String
 end
 
-Token.generate
+# token = Token.new name: "Test"
+# token.save
 
-token = Token.new name: "Test"
-token.save
+# Token.find "12121"
 
-user.name = "Ted"
-user.save
+# user.name = "Ted"
+# user.save
 
 # User.find "2591281"
