@@ -9,7 +9,7 @@ module Leon
 				@@collection : Leon::Collection = @@database.as(Leon::Database).collection(@@collection_name)
 
 				def self.get_collection
-					@@collection
+					@@collection_name
 				end
 
 				def self.collection(name)
@@ -18,6 +18,10 @@ module Leon
 					SETTINGS[:collection] = name
 					@@collection_name = name
 					@@collection =  @@database.as(Leon::Database).collection(name)
+				end
+
+				def self.collection
+					@@collection
 				end
 
 				def collection
