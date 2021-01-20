@@ -52,10 +52,21 @@ module Leon
 					end
 				end
 
-				def force_delete
+				def restore
 				end
 
-				def restore
+				def force_delete
+					begin
+						unless @@database.nil? && self._key.as(String).nil?
+							# Check if ID is set
+							obj = self.collection.document.delete(self._key.as(String))
+							return true
+						end
+						return false
+					rescue exception
+						puts exception
+						return false
+					end
 				end
 			end
 		end
