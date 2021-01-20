@@ -1,27 +1,27 @@
 module Leon
 	module ORM
 		module Collection
-			macro collection(name)
-				{% SETTINGS[:collection] = name.id %}
-			end
-
 			macro __process_collection
 				{% name_space = @type.name.gsub(/::/, "_").downcase.id %}
 				{% collection = SETTINGS[:collection] || name_space + "s" %}
 
-				@@collection = "{{collection}}"
-				@@db_collection : Leon::Collection = @@database.as(Leon::Database).collection(@@collection)
+				@@collection_name = "{{collection}}"
+				@@collection : Leon::Collection = @@database.as(Leon::Database).collection(@@collection_name)
 
-				def self.collection
+				def self.get_collection
 					@@collection
 				end
 
-				def self.db_collection
-					@db_collection
+				def self.collection(name)
+					@@database.as(Leon::Database).collection(@@collection_name).delete
+
+					SETTINGS[:collection] = name
+					@@collection_name = name
+					@@collection =  @@database.as(Leon::Database).collection(name)
 				end
 
-				def _key
-					_key
+				def collection
+					@@collection
 				end
 			end
 		end
