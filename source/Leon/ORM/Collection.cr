@@ -9,9 +9,8 @@ module Leon
 				{% name_space = @type.name.gsub(/::/, "_").downcase.id %}
 				{% collection = SETTINGS[:collection] || name_space + "s" %}
 
-
 				@@collection = "{{collection}}"
-				@@db_collection = ""
+				@@db_collection : Leon::Collection = @@database.as(Leon::Database).collection(@@collection)
 
 				def self.collection
 					@@collection
