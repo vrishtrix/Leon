@@ -15,12 +15,14 @@ module Leon
 			include Leon::ORM::Persistence
 			include Leon::ORM::Operations
 
+			include ActiveModel::Validation
 			include ActiveModel::Callbacks
 
-			@errors = [] of Leon::ORM::Error
+			@errors = [] of ActiveModel::Error
 			@@database = Leon::Connection.db
 
 			macro inherited
+				__process_settings
 				__process_collection
 				__process_persistence
 				__process_operations
@@ -30,8 +32,16 @@ module Leon
 				end
 			end
 
-			def initialize(@args = {} of String => (Array(String) | JSON::Any | String))
+			macro timestamps
+				attribute created_at : Time = Time.utc
+				attribute updated_at : Time = Time.utc
 			end
+
+			macro soft_deletes
+				attribute deleted_at : Time?
+			end
+
+			attribute _key : String?, es_type: "keyword", mass_assignment: false
 
 			def self.create(args = {} of String => (Array(String) | JSON::Any | String))
 				self.new(**args)
