@@ -7,7 +7,20 @@ module Leon
 				end
 
 				def self.find(id : String)
-					puts "Leon::Model::Find for Model #{id}"
+					begin
+						unless @@database.nil?
+							obj = collection.document.get(id)
+
+							attributes = Hash(String, String | Array(String) | Int32 | Nil | Bool | Int64 | Float32 | Float64).from_json(obj.to_json)
+
+							return Nil if attributes.has_key?("code")
+							return obj
+							return Nil
+						end
+					rescue exception
+						puts exception
+						return Nil
+					end
 				end
 
 				def self.where
