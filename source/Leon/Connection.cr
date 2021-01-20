@@ -6,11 +6,15 @@ module Leon
 		class_property database : String = "database"
 
 		class_property client : Leon::Client | Nil
-		class_property db  : Leon::Database | Nil
+		class_property db : Leon::Database | Nil
 
 		def initialize
 			@@client = Client.new(@@endpoint, @@username, @@password)
 			@@db = @@client.as(Leon::Client).database(@@database)
+		end
+
+		def self.database
+			@@db
 		end
 	end
 end
