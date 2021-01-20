@@ -1,10 +1,8 @@
 module Leon
 	module ORM
 		module Settings
-			macro included
-				macro inherited
-					SETTINGS = {} of Nil => Nil
-			    end
+			macro __process_settings
+				SETTINGS = {} of Symbol => String
 			end
 		end
 	end
