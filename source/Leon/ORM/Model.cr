@@ -4,6 +4,7 @@ require "./Error"
 require "./Settings"
 require "./Collection"
 require "./Persistence"
+require "./Operations"
 
 module Leon
 	module ORM
@@ -12,30 +13,17 @@ module Leon
 			include Leon::ORM::Settings
 			include Leon::ORM::Collection
 			include Leon::ORM::Persistence
+			include Leon::ORM::Operations
+
 			include ActiveModel::Callbacks
+
+			@errors = [] of Leon::ORM::Error
+			@@database = Leon::Connection.db
 
 			macro inherited
 				__process_collection
 				__process_persistence
-
-				@@db_collection = ""
-				@@db_timestamps = false
-
-				def self.collection(collection : String)
-					@@db_collection = collection
-				end
-
-				def self.db_collection
-					@@db_collection
-				end
-
-				def self.timestamps(timestamps : Bool)
-					@@db_timestamps = false
-				end
-
-				def self.db_timestamps
-					@@db_timestamps
-				end
+				__process_operations
 
 				def class_name
 					"{{@type.name.id}}".downcase
@@ -49,21 +37,8 @@ module Leon
 				self.new(**args)
 			end
 
-			def self.generate
-			end
-
-			def self.all
-			end
-
-			def self.find(id : String)
-				puts "Leon::Model::Find for Model #{id}"
-			end
-
-			def self.where
-				puts "where"
-			end
-
-			def self.destroy
+			def errors
+				@errors
 			end
 
 			def fresh
