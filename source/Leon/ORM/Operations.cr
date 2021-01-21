@@ -14,7 +14,12 @@ module Leon
 							attributes = Hash(String, String | Array(String) | Int32 | Nil | Bool | Int64 | Float32 | Float64).from_json(obj.to_json)
 
 							return Nil if attributes.has_key?("code")
-							return obj
+
+							instance = self.new
+							instance.assign_attributes_from_json(obj.to_json)
+
+							return instance
+
 							return Nil
 						end
 					rescue exception
