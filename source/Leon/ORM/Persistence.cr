@@ -4,31 +4,31 @@ module Leon
 	module ORM
 		module Persistence
 			macro __process_persistence
-
 				def save
 					begin
-						if _key
-							# @updated_at = Time.now
-							# Update
-
-							unless self.updated_at.nil?
-								self.updated_at = Time.utc
-							end
-
-							puts "Key exists"
-						else
+						if self._key.nil?
 							unless @@database.nil?
 								attributes = self.attributes
 								attributes.delete(:_key)
 
 								obj = self.collection.document.create(
-									Hash(String, String | Array(String) | Int32 | Nil | Bool | Int64 | Float32 | Float64).from_json(attributes.to_json)
+									Hash(String, String | Array(String) | Int32 | Nil | Bool | Int64 | Float64).from_json(attributes.to_json)
 								)
 
 								self._key = obj["_key"].to_s
 
-								return self.attributes
+								return self
 							end
+						else
+							unless self.updated_at.nil?
+								self.updated_at = Time.utc
+							end
+
+							obj = self.collection.document.update(self._key.as(String),
+								Hash(String, String | Array(String) | Int32 | Nil | Bool | Int64 | Float64).from_json(self.attributes.to_json)
+							)
+
+							return self
 						end
 
 						return false
@@ -36,6 +36,11 @@ module Leon
 						puts exception
 						return false
 					end
+				end
+
+				def save!
+					return if save
+					raise "Error saving"
 				end
 
 				def delete
