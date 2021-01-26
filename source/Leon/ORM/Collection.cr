@@ -27,6 +27,14 @@ module Leon
 				def collection
 					@@collection
 				end
+
+				def self.aql
+					@@database.as(Leon::Database).aql
+				end
+
+				def aql
+					@@database.as(Leon::Database).aql
+				end
 			end
 		end
 	end
