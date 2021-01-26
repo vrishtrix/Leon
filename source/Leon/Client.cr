@@ -41,9 +41,7 @@ module Leon
 			JSON.parse(response.body)
 		end
 
-		def post(url : String, body : Hash(String,
-				NamedTuple(val: String) | Bool |  String | Array(String) | Array(Int32) | Array(Int64) | Array(Float32) | Array(Float64) | Float32 | Float64 | Int32 | Int64 | Nil)
-			)
+		def post(url : String, body : Hash(String, Object))
 			response = Halite.post(@endpoint + url, headers: headers, json: body)
 			JSON.parse(response.body)
 		end
@@ -58,8 +56,13 @@ module Leon
 			JSON.parse(response.body)
 		end
 
-		def put(url : String, body : Hash(String, String))
+		def put(url : String, body : Hash(String, Object))
 			response = Halite.put(@endpoint + url, headers: headers, json: body)
+			JSON.parse(response.body)
+		end
+
+		def patch(url : String, body : Hash(String, Object))
+			response = Halite.patch(@endpoint + url, headers: headers, json: body)
 			JSON.parse(response.body)
 		end
 

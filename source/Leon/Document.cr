@@ -20,8 +20,8 @@ module Leon
 			@client.post("/_db/#{@database}/_api/document/#{@collection}?#{urlParams}", body)
 		end
 
-		def update(body : Hash | Array | JSON::Any, urlParams = "")
-			@client.patch("/_db/#{@database}/_api/document/#{@collection}?#{urlParams}", body)
+		def update(id : String, body : Hash | Array | JSON::Any, urlParams = "")
+			@client.patch("/_db/#{@database}/_api/document/#{@collection}/#{id}", body)
 		end
 
 		def delete(id : String)
