@@ -16,12 +16,6 @@ dependencies:
             github: spider-gazelle/active-model
             branch: master
 
-      graphql:
-            github: graphql-crystal/graphql
-
-      kemal:
-            github: kemalcr/kemal
-
-crystal: 0.35.1
+crystal: ">= 0.36.1, < 2.0.0"
 
 license: MIT
